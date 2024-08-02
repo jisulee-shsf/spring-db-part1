@@ -22,5 +22,10 @@ class MemberRepositoryV0Test {
         //findById()
         Member findMember = repository.findById(member.getMemberId());
         assertThat(findMember).isEqualTo(member);
+
+        //update()
+        repository.update(member.getMemberId(), 20000);
+        Member updateMember = repository.findById(member.getMemberId());
+        assertThat(updateMember.getMoney()).isEqualTo(20000);
     }
 }
