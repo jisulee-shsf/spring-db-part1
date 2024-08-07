@@ -19,8 +19,8 @@ public class ConnectionTest {
     void driverManager() throws SQLException {
         Connection con1 = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         Connection con2 = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        log.info("connection = {}, class{}", con1, con1.getClass());
-        log.info("connection = {}, class{}", con2, con2.getClass());
+        log.info("connection = {}, class = {}", con1, con1.getClass());
+        log.info("connection = {}, class = {}", con2, con2.getClass());
     }
 
     @Test
@@ -36,7 +36,7 @@ public class ConnectionTest {
         dataSource.setUsername(USERNAME);
         dataSource.setPassword(PASSWORD);
         dataSource.setMaximumPoolSize(10);
-        dataSource.setPoolName("Mypool");
+        dataSource.setPoolName("MyPool");
 
         useDataSource(dataSource);
         Thread.sleep(1000);
@@ -45,7 +45,7 @@ public class ConnectionTest {
     private void useDataSource(DataSource dataSource) throws SQLException {
         Connection con1 = dataSource.getConnection();
         Connection con2 = dataSource.getConnection();
-        log.info("connection = {}, class{}", con1, con1.getClass());
-        log.info("connection = {}, class{}", con2, con2.getClass());
+        log.info("connection = {}, class = {}", con1, con1.getClass());
+        log.info("connection = {}, class = {}", con2, con2.getClass());
     }
 }
