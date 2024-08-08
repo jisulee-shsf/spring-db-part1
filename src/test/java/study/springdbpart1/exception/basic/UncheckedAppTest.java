@@ -1,11 +1,13 @@
 package study.springdbpart1.exception.basic;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@Slf4j
 public class UncheckedAppTest {
 
     @Test
@@ -13,6 +15,16 @@ public class UncheckedAppTest {
         Controller controller = new Controller();
         assertThatThrownBy(() -> controller.request())
                 .isInstanceOf(RuntimeSQLException.class);
+    }
+
+    @Test
+    void printEx() {
+        Controller controller = new Controller();
+        try {
+            controller.request();
+        } catch (Exception e) {
+            log.info("ex", e);
+        }
     }
 
     static class Controller {
@@ -44,6 +56,7 @@ public class UncheckedAppTest {
             try {
                 runSQL();
             } catch (SQLException e) {
+                //기존 예외 포함
                 throw new RuntimeSQLException(e);
             }
         }
@@ -60,6 +73,9 @@ public class UncheckedAppTest {
     }
 
     static class RuntimeSQLException extends RuntimeException {
+        public RuntimeSQLException() {
+        }
+
         public RuntimeSQLException(Throwable cause) {
             super(cause);
         }
