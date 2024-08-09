@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import study.springdbpart1.domain.Member;
 import study.springdbpart1.repository.MemberRepository;
-import study.springdbpart1.repository.MemberRepositoryV4_1;
+import study.springdbpart1.repository.MemberRepositoryV4_2;
 
 import javax.sql.DataSource;
 
@@ -48,7 +48,7 @@ class MemberServiceV4Test {
 
         @Bean
         MemberRepository memberRepository() {
-            return new MemberRepositoryV4_1(dataSource);
+            return new MemberRepositoryV4_2(dataSource);
         }
 
         @Bean
